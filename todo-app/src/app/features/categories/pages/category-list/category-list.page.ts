@@ -10,6 +10,7 @@ import { CategoryService } from '../../services/category.service';
 import { CategoryItemComponent } from '../../components/category-item/category-item.component';
 import { CategoryFormComponent } from '../../components/category-form/category-form.component';
 import { Category } from '../../../../core/models/category.model';
+import { TaskService } from '../../../tasks/services/task.service';
 
 @Component({
   selector: 'app-category-list',
@@ -57,6 +58,7 @@ import { Category } from '../../../../core/models/category.model';
 })
 export class CategoryListPage implements OnInit {
   protected readonly categoryService = inject(CategoryService);
+  private readonly taskService = inject(TaskService);
   private readonly modalCtrl = inject(ModalController);
   private readonly alertCtrl = inject(AlertController);
 
@@ -95,6 +97,7 @@ export class CategoryListPage implements OnInit {
     await alert.present();
     const { role } = await alert.onWillDismiss();
     if (role === 'confirm') {
+      await this.taskService.unassignCategory(category.id);
       await this.categoryService.deleteCategory(category.id);
     }
   }
