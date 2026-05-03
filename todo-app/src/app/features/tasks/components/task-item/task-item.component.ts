@@ -34,6 +34,19 @@ import { Task } from '../../../../core/models/task.model';
               [style.opacity]="task.completed ? '0.5' : '1'">
             {{ task.title }}
           </h2>
+          @if (task.description) {
+            <p style="margin:4px 0 6px;color:var(--ion-color-medium-shade)">
+              {{ shortDescription(task.description) }}
+            </p>
+          }
+          <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
+            @if (task.priority) {
+              <ion-badge [color]="priorityColor(task.priority)">{{ priorityText(task.priority) }}</ion-badge>
+            }
+            @if (task.reminderLabel) {
+              <ion-badge color="tertiary">Recordatorio: {{ task.reminderLabel }}</ion-badge>
+            }
+          </div>
           @if (categoryName) {
             <ion-badge color="medium">{{ categoryName }}</ion-badge>
           }
@@ -69,5 +82,23 @@ export class TaskItemComponent implements OnInit {
     const mm = String(d.getMonth() + 1).padStart(2, '0');
     const yyyy = d.getFullYear();
     return `${dd}/${mm}/${yyyy}`;
+  }
+
+  priorityText(priority: NonNullable<Task['priority']>): string {
+    if (priority === 'high') return 'Alta';
+    if (priority === 'medium') return 'Media';
+    return 'Baja';
+  }
+
+  priorityColor(priority: NonNullable<Task['priority']>): 'danger' | 'warning' | 'success' {
+    if (priority === 'high') return 'danger';
+    if (priority === 'medium') return 'warning';
+    return 'success';
+  }
+
+  shortDescription(value: string): string {
+    const clean = value.trim();
+    if (clean.length <= 90) return clean;
+    return `${clean.slice(0, 87)}...`;
   }
 }

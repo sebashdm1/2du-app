@@ -36,6 +36,7 @@ import { TaskService } from '../../../tasks/services/task.service';
           @for (cat of categoryService.categories(); track cat.id) {
             <app-category-item
               [category]="cat"
+              [pendingCount]="pendingByCategory(cat.id)"
               (editRequest)="openForm($event)"
               (deleteRequest)="confirmDelete($event)"
             />
@@ -67,7 +68,7 @@ export class CategoryListPage implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
-    await this.categoryService.loadAll();
+    await Promise.all([this.categoryService.loadAll(), this.taskService.loadAll()]);
   }
 
   async openForm(category?: Category): Promise<void> {
@@ -76,13 +77,29 @@ export class CategoryListPage implements OnInit {
       componentProps: { category: category ?? null },
     });
     await modal.present();
-    const { data, role } = await modal.onWillDismiss<{ name: string }>();
+    const { data, role } = await modal.onWillDismiss<{
+      name: string;
+      icon?: string;
+      color?: string;
+    }>();
     if (role !== 'confirm' || !data) return;
     if (category) {
-      await this.categoryService.updateCategory(category.id, { name: data.name });
+      await this.categoryService.updateCategory(category.id, {
+        name: data.name,
+        icon: data.icon,
+        color: data.color,
+      });
     } else {
-      await this.categoryService.addCategory({ name: data.name });
+      await this.categoryService.addCategory({
+        name: data.name,
+        icon: data.icon,
+        color: data.color,
+      });
     }
+  }
+
+  pendingByCategory(categoryId: string): number {
+    return this.taskService.tasks().filter((task) => !task.completed && task.categoryId === categoryId).length;
   }
 
   async confirmDelete(category: Category): Promise<void> {

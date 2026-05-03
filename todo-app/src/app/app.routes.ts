@@ -21,6 +21,13 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'feature-flags',
+    loadComponent: () =>
+      import('./features/feature-flags/pages/feature-flags/feature-flags.page').then(
+        (m) => m.FeatureFlagsPage,
+      ),
+  },
+  {
     path: '**',
     redirectTo: 'tasks',
   },

@@ -68,3 +68,11 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+# Secrets and Firebase credentials
+.env
+.env.*
+*.pem
+*.key
+google-services.json
+GoogleService-Info.plist

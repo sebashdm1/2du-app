@@ -11,8 +11,11 @@ import { Category } from '../../../../core/models/category.model';
   imports: [IonItem, IonLabel, IonButton, IonIcon],
   template: `
     <ion-item>
-      <ion-icon name="pricetag-outline" slot="start" />
-      <ion-label>{{ category.name }}</ion-label>
+      <span slot="start" style="font-size:1.2rem;min-width:1.5rem;text-align:center;">{{ category.icon || '🏷️' }}</span>
+      <ion-label>
+        <h2>{{ category.name }}</h2>
+        <p>Pendientes: {{ pendingCount }}</p>
+      </ion-label>
       <ion-button slot="end" fill="clear" (click)="editRequest.emit(category)">
         <ion-icon slot="icon-only" name="pencil-outline" />
       </ion-button>
@@ -24,6 +27,7 @@ import { Category } from '../../../../core/models/category.model';
 })
 export class CategoryItemComponent implements OnInit {
   @Input({ required: true }) category!: Category;
+  @Input() pendingCount = 0;
   @Output() editRequest = new EventEmitter<Category>();
   @Output() deleteRequest = new EventEmitter<Category>();
 

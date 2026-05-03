@@ -5,4 +5,7 @@ export interface Task {
   categoryId: string | null;
   createdAt: number;
   dueDate?: string;
+  priority?: 'high' | 'medium' | 'low';
+  description?: string;
+  reminderLabel?: string;
 }

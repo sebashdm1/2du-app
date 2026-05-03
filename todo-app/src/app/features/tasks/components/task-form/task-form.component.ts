@@ -3,7 +3,7 @@ import { ReactiveFormsModule, FormControl, FormGroup, Validators, AbstractContro
 import {
   IonHeader, IonToolbar, IonTitle, IonButtons, IonButton,
   IonContent, IonItem, IonInput, IonSelect, IonSelectOption,
-  IonDatetimeButton, IonDatetime, IonModal, IonNote,
+  IonDatetimeButton, IonDatetime, IonModal, IonNote, IonTextarea,
   ModalController,
 } from '@ionic/angular/standalone';
 import { Task } from '../../../../core/models/task.model';
@@ -21,7 +21,7 @@ function noWhitespaceValidator(control: AbstractControl): ValidationErrors | nul
     ReactiveFormsModule,
     IonHeader, IonToolbar, IonTitle, IonButtons, IonButton,
     IonContent, IonItem, IonInput, IonSelect, IonSelectOption,
-    IonDatetimeButton, IonDatetime, IonModal, IonNote,
+    IonDatetimeButton, IonDatetime, IonModal, IonNote, IonTextarea,
   ],
   template: `
     <ion-header>
@@ -62,6 +62,38 @@ function noWhitespaceValidator(control: AbstractControl): ValidationErrors | nul
       </ion-item>
 
       <ion-item>
+        <ion-textarea
+          label="Descripción"
+          labelPlacement="floating"
+          [formControl]="form.controls.description"
+          placeholder="Detalles opcionales"
+          autoGrow="true"
+        />
+      </ion-item>
+
+      <ion-item>
+        <ion-select
+          label="Prioridad"
+          labelPlacement="floating"
+          [formControl]="form.controls.priority"
+          placeholder="Selecciona prioridad"
+        >
+          <ion-select-option value="high">Alta</ion-select-option>
+          <ion-select-option value="medium">Media</ion-select-option>
+          <ion-select-option value="low">Baja</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-input
+          label="Recordatorio visual"
+          labelPlacement="floating"
+          [formControl]="form.controls.reminderLabel"
+          placeholder="Ej: Revisar antes de almuerzo"
+        />
+      </ion-item>
+
+      <ion-item>
         <ion-datetime-button datetime="task-datetime" />
       </ion-item>
       <ion-modal [keepContentsMounted]="true">
@@ -95,6 +127,9 @@ export class TaskFormComponent implements OnInit {
     title: new FormControl('', [Validators.required, noWhitespaceValidator]),
     categoryId: new FormControl<string | null>(null),
     dueDate: new FormControl<string | null>(null),
+    description: new FormControl<string | null>(null),
+    priority: new FormControl<'high' | 'medium' | 'low' | null>('medium'),
+    reminderLabel: new FormControl<string | null>(null),
   });
 
   ngOnInit(): void {
@@ -103,18 +138,24 @@ export class TaskFormComponent implements OnInit {
         title: this.task.title,
         categoryId: this.task.categoryId ?? null,
         dueDate: this.task.dueDate ?? null,
+        description: this.task.description ?? null,
+        priority: this.task.priority ?? 'medium',
+        reminderLabel: this.task.reminderLabel ?? null,
       });
     }
   }
 
   save(): void {
     if (this.form.invalid) return;
-    const { title, categoryId, dueDate } = this.form.getRawValue();
+    const { title, categoryId, dueDate, description, priority, reminderLabel } = this.form.getRawValue();
     this.modalCtrl.dismiss(
       {
         title: (title ?? '').trim(),
         categoryId: categoryId || undefined,
         dueDate: dueDate || undefined,
+        description: description?.trim() ? description.trim() : undefined,
+        priority: priority ?? undefined,
+        reminderLabel: reminderLabel?.trim() ? reminderLabel.trim() : undefined,
       },
       'confirm'
     );

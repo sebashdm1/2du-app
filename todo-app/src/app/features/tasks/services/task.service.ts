@@ -20,7 +20,14 @@ export class TaskService {
     this.tasks.set(await this.storage.getTasks());
   }
 
-  async addTask(input: { title: string; categoryId?: string; dueDate?: string }): Promise<Task> {
+  async addTask(input: {
+    title: string;
+    categoryId?: string;
+    dueDate?: string;
+    priority?: 'high' | 'medium' | 'low';
+    description?: string;
+    reminderLabel?: string;
+  }): Promise<Task> {
     const task: Task = {
       id: generateUUID(),
       title: input.title.trim(),
@@ -28,6 +35,9 @@ export class TaskService {
       categoryId: input.categoryId ?? null,
       createdAt: Date.now(),
       dueDate: input.dueDate,
+      priority: input.priority,
+      description: input.description,
+      reminderLabel: input.reminderLabel,
     };
     await this.storage.saveTask(task);
     this.tasks.update(list => [...list, task]);
@@ -36,7 +46,7 @@ export class TaskService {
 
   async updateTask(
     id: string,
-    patch: Partial<Pick<Task, 'title' | 'categoryId' | 'dueDate' | 'completed'>>
+    patch: Partial<Pick<Task, 'title' | 'categoryId' | 'dueDate' | 'completed' | 'priority' | 'description' | 'reminderLabel'>>
   ): Promise<void> {
     const list = this.tasks();
     const idx = list.findIndex(t => t.id === id);

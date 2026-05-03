@@ -13,14 +13,14 @@ export class CategoryService {
     this.categories.set(await this.storage.getCategories());
   }
 
-  async addCategory(input: { name: string; color?: string }): Promise<Category> {
-    const category: Category = { id: generateUUID(), name: input.name.trim(), color: input.color };
+  async addCategory(input: { name: string; color?: string; icon?: string }): Promise<Category> {
+    const category: Category = { id: generateUUID(), name: input.name.trim(), color: input.color, icon: input.icon };
     await this.storage.saveCategory(category);
     this.categories.update(cats => [...cats, category]);
     return category;
   }
 
-  async updateCategory(id: string, patch: Partial<Pick<Category, 'name' | 'color'>>): Promise<void> {
+  async updateCategory(id: string, patch: Partial<Pick<Category, 'name' | 'color' | 'icon'>>): Promise<void> {
     const cats = this.categories();
     const idx = cats.findIndex(c => c.id === id);
     if (idx < 0) return;

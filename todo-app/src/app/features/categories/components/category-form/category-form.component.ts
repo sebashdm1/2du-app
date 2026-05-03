@@ -42,6 +42,25 @@ function noWhitespaceValidator(control: AbstractControl): ValidationErrors | nul
           El nombre no puede estar vacío
         </ion-note>
       }
+
+      <ion-item>
+        <ion-input
+          label="Icono"
+          labelPlacement="floating"
+          [formControl]="iconControl"
+          placeholder="Ej: 📚 o briefcase"
+        />
+      </ion-item>
+
+      <ion-item>
+        <ion-input
+          label="Color"
+          labelPlacement="floating"
+          [formControl]="colorControl"
+          placeholder="Ej: #ff9800"
+        />
+      </ion-item>
+
       <ion-button
         expand="block"
         class="ion-margin-top"
@@ -57,18 +76,31 @@ export class CategoryFormComponent implements OnInit {
   @Input() category: Category | null = null;
 
   readonly nameControl = new FormControl('', [Validators.required, noWhitespaceValidator]);
+  readonly iconControl = new FormControl<string | null>(null);
+  readonly colorControl = new FormControl<string | null>(null);
 
   private readonly modalCtrl = inject(ModalController);
 
   ngOnInit(): void {
     if (this.category) {
       this.nameControl.setValue(this.category.name);
+      this.iconControl.setValue(this.category.icon ?? null);
+      this.colorControl.setValue(this.category.color ?? null);
     }
   }
 
   save(): void {
     if (this.nameControl.invalid) return;
-    this.modalCtrl.dismiss({ name: (this.nameControl.value ?? '').trim() }, 'confirm');
+    const icon = this.iconControl.value?.trim();
+    const color = this.colorControl.value?.trim();
+    this.modalCtrl.dismiss(
+      {
+        name: (this.nameControl.value ?? '').trim(),
+        icon: icon ? icon : undefined,
+        color: color ? color : undefined,
+      },
+      'confirm'
+    );
   }
 
   cancel(): void {

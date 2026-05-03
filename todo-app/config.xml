@@ -4,8 +4,10 @@
     <description>An awesome Ionic/Cordova app.</description>
     <author email="hi@ionicframework.com" href="https://ionicframework.com/">Ionic Framework Team</author>
     <content src="index.html" />
-    <access origin="*" />
-    <allow-intent href="http://*/*" />
+    <access origin="https://*.googleapis.com" />
+    <access origin="https://*.firebaseio.com" />
+    <access origin="https://*.firebaseapp.com" />
+    <access origin="https://*.google.com" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />
     <allow-intent href="sms:*" />
