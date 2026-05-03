@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { IonHeader, IonToolbar, IonContent, IonIcon, AlertController } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { chevronForwardOutline, flagOutline, trashOutline, informationCircleOutline } from 'ionicons/icons';
-import { BottomNavComponent } from '../../../../shared/components/bottom-nav/bottom-nav.component';
 import { TaskService } from '../../../tasks/services/task.service';
 import { CategoryService } from '../../../categories/services/category.service';
 
@@ -11,7 +10,7 @@ import { CategoryService } from '../../../categories/services/category.service';
   selector: 'app-settings-home',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [IonHeader, IonToolbar, IonContent, IonIcon, BottomNavComponent],
+  imports: [IonHeader, IonToolbar, IonContent, IonIcon],
   templateUrl: './settings-home.page.html',
   styleUrl: './settings-home.page.scss',
 })

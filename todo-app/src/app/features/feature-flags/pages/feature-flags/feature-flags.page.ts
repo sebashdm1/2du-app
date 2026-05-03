@@ -1,13 +1,12 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { IonHeader, IonToolbar, IonContent, IonBackButton, IonButtons } from '@ionic/angular/standalone';
 import { RemoteConfigService, FeatureFlagKey } from '../../../../core/services/remote-config.service';
-import { BottomNavComponent } from '../../../../shared/components/bottom-nav/bottom-nav.component';
 
 @Component({
   selector: 'app-feature-flags',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [IonHeader, IonToolbar, IonContent, IonBackButton, IonButtons, BottomNavComponent],
+  imports: [IonHeader, IonToolbar, IonContent, IonBackButton, IonButtons],
   templateUrl: './feature-flags.page.html',
   styleUrl: './feature-flags.page.scss',
 })

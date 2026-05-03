@@ -12,7 +12,6 @@ import { CategoryService } from '../../../categories/services/category.service';
 import { TaskItemComponent } from '../../components/task-item/task-item.component';
 import { TaskFormComponent } from '../../components/task-form/task-form.component';
 import { Task } from '../../../../core/models/task.model';
-import { BottomNavComponent } from '../../../../shared/components/bottom-nav/bottom-nav.component';
 
 @Component({
   selector: 'app-task-list',
@@ -20,7 +19,7 @@ import { BottomNavComponent } from '../../../../shared/components/bottom-nav/bot
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     IonHeader, IonToolbar, IonContent, IonIcon,
-    TaskItemComponent, BottomNavComponent,
+    TaskItemComponent,
   ],
   templateUrl: './task-list.page.html',
   styleUrl: './task-list.page.scss',

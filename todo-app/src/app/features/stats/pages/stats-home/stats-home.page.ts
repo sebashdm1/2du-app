@@ -3,13 +3,12 @@ import { IonHeader, IonToolbar, IonContent } from '@ionic/angular/standalone';
 import { TaskService } from '../../../tasks/services/task.service';
 import { CategoryService } from '../../../categories/services/category.service';
 import { RemoteConfigService } from '../../../../core/services/remote-config.service';
-import { BottomNavComponent } from '../../../../shared/components/bottom-nav/bottom-nav.component';
 
 @Component({
   selector: 'app-stats-home',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [IonHeader, IonToolbar, IonContent, BottomNavComponent],
+  imports: [IonHeader, IonToolbar, IonContent],
   templateUrl: './stats-home.page.html',
   styleUrl: './stats-home.page.scss',
 })

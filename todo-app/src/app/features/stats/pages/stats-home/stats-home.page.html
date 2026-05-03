@@ -16,7 +16,6 @@
       <p>El dashboard de estadísticas está desactivado por Remote Config.</p>
       <p class="flag-hint">Activa <code>nueva_ui_estadisticas</code> en Firebase para habilitarlo.</p>
     </div>
-    <app-bottom-nav activeTab="stats" />
   }
 
   @if (statsEnabled()) {
@@ -100,6 +99,5 @@
 
   </div>
 
-  <app-bottom-nav activeTab="stats" />
   } <!-- end @if statsEnabled -->
 </ion-content>

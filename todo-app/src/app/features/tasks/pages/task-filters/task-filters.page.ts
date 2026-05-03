@@ -22,7 +22,6 @@ import { arrowBackOutline } from 'ionicons/icons';
 import { TaskService } from '../../services/task.service';
 import { CategoryService } from '../../../categories/services/category.service';
 import { Task } from '../../../../core/models/task.model';
-import { BottomNavComponent } from '../../../../shared/components/bottom-nav/bottom-nav.component';
 
 @Component({
   selector: 'app-task-filters',
@@ -44,7 +43,6 @@ import { BottomNavComponent } from '../../../../shared/components/bottom-nav/bot
     IonItem,
     IonNote,
     IonIcon,
-    BottomNavComponent,
   ],
   templateUrl: './task-filters.page.html',
   styleUrl: './task-filters.page.scss',

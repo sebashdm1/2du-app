@@ -34,3 +34,8 @@
 
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
+
+/* Reserve space for the fixed bottom nav on all pages */
+ion-content {
+  --padding-bottom: 84px;
+}

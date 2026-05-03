@@ -15,7 +15,7 @@ import { BottomNavComponent } from '../../../../shared/components/bottom-nav/bot
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     IonHeader, IonToolbar, IonContent,
-    CategoryItemComponent, BottomNavComponent,
+    CategoryItemComponent,
   ],
   templateUrl: './category-list.page.html',
   styleUrl: './category-list.page.scss',
