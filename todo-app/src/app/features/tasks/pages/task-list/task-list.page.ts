@@ -6,7 +6,7 @@ import {
   AlertController, ModalController,
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import { sparklesOutline, funnelOutline } from 'ionicons/icons';
+import { sparklesOutline, funnelOutline, personOutline } from 'ionicons/icons';
 import { TaskService } from '../../services/task.service';
 import { CategoryService } from '../../../categories/services/category.service';
 import { TaskItemComponent } from '../../components/task-item/task-item.component';
@@ -36,7 +36,7 @@ export class TaskListPage implements OnInit {
   private readonly destroyRef = inject(DestroyRef);
 
   constructor() {
-    addIcons({ sparklesOutline, funnelOutline });
+    addIcons({ sparklesOutline, funnelOutline, personOutline });
   }
 
   async ngOnInit(): Promise<void> {

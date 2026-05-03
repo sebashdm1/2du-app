@@ -1,10 +1,12 @@
 <ion-header class="ion-no-border">
   <ion-toolbar>
     <div class="greeting-row">
-      <div class="avatar">SH</div>
+      <div class="avatar">
+        <ion-icon name="person-outline" />
+      </div>
       <div class="greeting-text">
-        <span class="hello">Buenos días,</span>
-        <span class="name">Sebastián</span>
+        <span class="hello">¡Hola!</span>
+        <span class="name">¿Qué haremos hoy?</span>
       </div>
       <button type="button" class="filter-btn" [class.filter-btn--active]="hasAdvancedFilters()" (click)="openFilters()" aria-label="Filtros avanzados">
         <ion-icon name="funnel-outline" />

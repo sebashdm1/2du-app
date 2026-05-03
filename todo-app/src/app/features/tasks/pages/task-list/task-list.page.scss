@@ -15,8 +15,12 @@ ion-toolbar {
   border-radius: 50%;
   background: var(--app-pink);
   display: flex; align-items: center; justify-content: center;
-  font-weight: 700; font-size: 14px; color: #fff;
   flex-shrink: 0;
+
+  ion-icon {
+    font-size: 18px;
+    color: #fff;
+  }
 }
 
 .greeting-text {
