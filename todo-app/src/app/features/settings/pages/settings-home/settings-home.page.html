@@ -1,29 +1,49 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Ajustes</ion-title>
+    <div class="toolbar-inner">
+      <div class="toolbar-title">Ajustes</div>
+      <div class="toolbar-sub">Configuración de la app</div>
+    </div>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-list inset="true" class="ion-margin-top">
-    <ion-item button (click)="goToFeatureFlags()">
-      <ion-icon slot="start" name="flag-outline" />
-      <ion-label>
-        <h2>Feature Flags</h2>
-        <p>Demo Firebase Remote Config</p>
-      </ion-label>
-      <ion-badge color="tertiary">Demo</ion-badge>
-      <ion-icon slot="end" name="chevron-forward-outline" />
-    </ion-item>
+  <div class="settings-content">
 
-    <ion-item>
-      <ion-icon slot="start" name="construct-outline" />
-      <ion-label>
-        <h2>Configuracion general</h2>
-        <p>Pendiente para siguiente iteracion</p>
-      </ion-label>
-    </ion-item>
-  </ion-list>
+    <div class="section-label">General</div>
+    <div class="settings-group">
+      <button class="settings-row" (click)="goToFeatureFlags()">
+        <div class="row-icon flag">
+          <ion-icon name="flag-outline" />
+        </div>
+        <div class="row-body">
+          <div class="row-title">Feature Flags</div>
+          <div class="row-sub">Estado de Firebase Remote Config</div>
+        </div>
+        <div class="demo-badge">Demo</div>
+        <ion-icon name="chevron-forward-outline" class="row-arrow" />
+      </button>
+    </div>
+
+    <div class="section-label danger-label">Zona de peligro</div>
+    <div class="settings-group">
+      <button class="settings-row danger-row" (click)="confirmReset()">
+        <div class="row-icon trash">
+          <ion-icon name="trash-outline" />
+        </div>
+        <div class="row-body">
+          <div class="row-title danger-title">Limpiar todos los datos</div>
+          <div class="row-sub">Elimina tareas y categorías permanentemente</div>
+        </div>
+      </button>
+    </div>
+
+    <div class="app-info">
+      <ion-icon name="information-circle-outline" />
+      <span>2Du v0.0.1 · Ionic + Angular</span>
+    </div>
+
+  </div>
 
   <app-bottom-nav activeTab="settings" />
 </ion-content>

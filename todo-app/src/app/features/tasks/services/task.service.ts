@@ -118,4 +118,11 @@ export class TaskService {
     this.selectedCategoryIds.set([]);
     this.selectedPriorities.set([]);
   }
+
+  async clearAll(): Promise<void> {
+    await this.storage.saveAllTasks([]);
+    this.tasks.set([]);
+    this.selectedCategoryIds.set([]);
+    this.selectedPriorities.set([]);
+  }
 }

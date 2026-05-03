@@ -33,4 +33,9 @@ export class CategoryService {
     await this.storage.deleteCategory(id);
     this.categories.update(cats => cats.filter(c => c.id !== id));
   }
+
+  async clearAll(): Promise<void> {
+    await this.storage.saveAllCategories([]);
+    this.categories.set([]);
+  }
 }

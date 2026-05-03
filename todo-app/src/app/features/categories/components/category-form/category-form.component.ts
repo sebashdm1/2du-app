@@ -17,7 +17,7 @@ import { noWhitespaceValidator } from '../../../../shared/validators/no-whitespa
 export class CategoryFormComponent implements OnInit {
   @Input() category: Category | null = null;
 
-  readonly nameControl = new FormControl('', [Validators.required, noWhitespaceValidator]);
+  readonly nameControl = new FormControl('', [Validators.required, Validators.maxLength(100), noWhitespaceValidator]);
   readonly colorControl = new FormControl<string | null>(null);
 
   readonly colors = [

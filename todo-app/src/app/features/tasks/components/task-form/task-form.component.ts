@@ -30,7 +30,7 @@ export class TaskFormComponent implements OnInit {
   private readonly modalCtrl = inject(ModalController);
 
   readonly form = new FormGroup({
-    title: new FormControl('', [Validators.required, noWhitespaceValidator]),
+    title: new FormControl('', [Validators.required, Validators.maxLength(200), noWhitespaceValidator]),
     categoryId: new FormControl<string | null>(null),
     dueDate: new FormControl<string | null>(null),
     description: new FormControl<string | null>(null),

@@ -1,18 +1,92 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Stats</ion-title>
+    <div class="toolbar-inner">
+      <div class="toolbar-title">Estadísticas</div>
+      <div class="toolbar-sub">Tu progreso general</div>
+    </div>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
-  <ion-card>
-    <ion-card-content>
-      <h2>Productividad semanal</h2>
-      <p>Vista inicial del rediseño. El detalle por dia quedara para el siguiente ajuste.</p>
-      <ion-badge color="success">Completadas: {{ completedCount() }}</ion-badge>
-      <ion-badge color="warning" class="ion-margin-start">Pendientes: {{ pendingCount() }}</ion-badge>
-    </ion-card-content>
-  </ion-card>
+<ion-content>
+  <div class="stats-content">
+
+    <!-- Progress ring card -->
+    <div class="progress-card">
+      <div class="ring-wrap">
+        <svg class="ring" viewBox="0 0 80 80">
+          <circle class="ring-bg" cx="40" cy="40" r="32" />
+          <circle class="ring-fill"
+            cx="40" cy="40" r="32"
+            [style.stroke-dashoffset]="201 - (201 * completionRate() / 100)" />
+        </svg>
+        <div class="ring-label">
+          <span class="ring-pct">{{ completionRate() }}%</span>
+          <span class="ring-txt">completado</span>
+        </div>
+      </div>
+      <div class="progress-meta">
+        <div class="meta-row">
+          <span class="meta-dot done"></span>
+          <span class="meta-label">Completadas</span>
+          <span class="meta-val">{{ completed() }}</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-dot pending"></span>
+          <span class="meta-label">Pendientes</span>
+          <span class="meta-val">{{ pending() }}</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-dot total"></span>
+          <span class="meta-label">Total</span>
+          <span class="meta-val">{{ total() }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Priority breakdown -->
+    <div class="section-title">Por prioridad</div>
+    <div class="priority-row">
+      <div class="pri-card high">
+        <span class="pri-num">{{ byPriority().high }}</span>
+        <span class="pri-lbl">Alta</span>
+      </div>
+      <div class="pri-card medium">
+        <span class="pri-num">{{ byPriority().medium }}</span>
+        <span class="pri-lbl">Media</span>
+      </div>
+      <div class="pri-card low">
+        <span class="pri-num">{{ byPriority().low }}</span>
+        <span class="pri-lbl">Baja</span>
+      </div>
+    </div>
+
+    <!-- By category -->
+    @if (byCategory().length > 0) {
+      <div class="section-title">Por categoría</div>
+      @for (cat of byCategory(); track cat.name) {
+        <div class="cat-stat-card">
+          <div class="cat-stat-header">
+            <span class="cat-stat-name">{{ cat.name }}</span>
+            <span class="cat-stat-count">{{ cat.total }} tareas</span>
+          </div>
+          <div class="cat-progress-bar">
+            <div class="cat-progress-fill"
+              [style.width.%]="cat.total === 0 ? 0 : ((cat.total - cat.pending) / cat.total) * 100">
+            </div>
+          </div>
+          <div class="cat-stat-sub">{{ cat.pending }} pendientes</div>
+        </div>
+      }
+    }
+
+    @if (total() === 0) {
+      <div class="empty-state">
+        <div class="empty-icon">📋</div>
+        <p>Crea tareas para ver tus estadísticas</p>
+      </div>
+    }
+
+  </div>
 
   <app-bottom-nav activeTab="stats" />
 </ion-content>
