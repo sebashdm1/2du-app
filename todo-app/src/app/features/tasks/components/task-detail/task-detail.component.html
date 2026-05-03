@@ -4,35 +4,56 @@
     <div class="handle"></div>
 
     <div class="sheet-header">
-      <div class="sheet-title-wrap">
-        @if (task.priority) {
-          <span class="pri-badge" [class]="'pri-' + task.priority">{{ priorityLabel() }}</span>
-        }
-        @if (categoryName) {
-          <span class="cat-badge">{{ categoryName }}</span>
-        }
-      </div>
+      <span class="sheet-title">Detalle de la tarea</span>
       <button class="close-btn" (click)="dismiss()">
         <ion-icon name="close-outline" />
       </button>
     </div>
 
-    <h2 class="task-title" [class.done]="task.completed">{{ task.title }}</h2>
+    <!-- Info card -->
+    <div class="info-card">
+      <h2 class="task-title" [class.done]="task.completed">{{ task.title }}</h2>
 
-    @if (task.description) {
-      <p class="task-desc">{{ task.description }}</p>
-    }
+      <div class="divider"></div>
 
-    @if (task.completed) {
-      <div class="status-chip completed">✓ Completada</div>
+      @if (task.description) {
+        <p class="task-desc">{{ task.description }}</p>
+      } @else {
+        <p class="task-desc empty-desc">Edita esta tarea para agregar más detalles.</p>
+      }
+
+      @if (task.completed) {
+        <div class="divider"></div>
+        <div class="status-chip completed">✓ Completada</div>
+      }
+    </div>
+
+    <!-- Badges below the card -->
+    @if (task.priority || categoryName) {
+      <div class="badges-row">
+        @if (task.priority) {
+          <div class="badge-item">
+            <span class="badge-label">Prioridad</span>
+            <span class="pri-badge" [class]="'pri-' + task.priority">{{ priorityLabel() }}</span>
+          </div>
+        }
+        @if (categoryName) {
+          <div class="badge-item">
+            <span class="badge-label">Categoría</span>
+            <span class="cat-badge">{{ categoryName }}</span>
+          </div>
+        }
+      </div>
     }
 
     <div class="actions">
       @if (!task.completed) {
         <app-button variant="primary" icon="checkmark-outline" (click)="complete()">Completar tarea</app-button>
       }
-      <app-button variant="secondary" icon="pencil-outline" (click)="edit()">Editar</app-button>
-      <app-button variant="danger" icon="trash-outline" (click)="delete()">Eliminar</app-button>
+      <div class="actions-row">
+        <app-button variant="secondary" icon="pencil-outline" (click)="edit()">Editar</app-button>
+        <app-button variant="danger" icon="trash-outline" (click)="delete()">Eliminar</app-button>
+      </div>
     </div>
 
   </div>
