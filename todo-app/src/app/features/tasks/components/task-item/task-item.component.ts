@@ -19,6 +19,7 @@ export class TaskItemComponent implements OnInit {
   @Output() toggleComplete = new EventEmitter<Task>();
   @Output() editRequest = new EventEmitter<Task>();
   @Output() deleteRequest = new EventEmitter<Task>();
+  @Output() tapRequest = new EventEmitter<Task>();
 
   ngOnInit(): void {
     addIcons({ trashOutline, pencilOutline });

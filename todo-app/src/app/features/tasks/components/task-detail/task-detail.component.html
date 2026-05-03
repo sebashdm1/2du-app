@@ -1,0 +1,39 @@
+<ion-content>
+  <div class="detail-sheet">
+
+    <div class="handle"></div>
+
+    <div class="sheet-header">
+      <div class="sheet-title-wrap">
+        @if (task.priority) {
+          <span class="pri-badge" [class]="'pri-' + task.priority">{{ priorityLabel() }}</span>
+        }
+        @if (categoryName) {
+          <span class="cat-badge">{{ categoryName }}</span>
+        }
+      </div>
+      <button class="close-btn" (click)="dismiss()">
+        <ion-icon name="close-outline" />
+      </button>
+    </div>
+
+    <h2 class="task-title" [class.done]="task.completed">{{ task.title }}</h2>
+
+    @if (task.description) {
+      <p class="task-desc">{{ task.description }}</p>
+    }
+
+    @if (task.completed) {
+      <div class="status-chip completed">✓ Completada</div>
+    }
+
+    <div class="actions">
+      @if (!task.completed) {
+        <app-button variant="primary" icon="checkmark-outline" (click)="complete()">Completar tarea</app-button>
+      }
+      <app-button variant="secondary" icon="pencil-outline" (click)="edit()">Editar</app-button>
+      <app-button variant="danger" icon="trash-outline" (click)="delete()">Eliminar</app-button>
+    </div>
+
+  </div>
+</ion-content>

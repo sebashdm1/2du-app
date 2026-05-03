@@ -76,6 +76,6 @@
   </div>
 </ion-content>
 
-<div class="save-btn" [class.disabled]="form.invalid" (click)="save()">
+<app-button variant="primary" [disabled]="form.invalid" (click)="save()">
   Guardar tarea
-</div>
+</app-button>

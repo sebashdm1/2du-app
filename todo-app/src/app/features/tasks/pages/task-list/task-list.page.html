@@ -62,6 +62,7 @@
         <app-task-item
           [task]="task"
           [categoryName]="getCategoryName(task.categoryId ?? undefined)"
+          (tapRequest)="openDetail($event)"
           (toggleComplete)="onToggle($event)"
           (editRequest)="openForm($event)"
           (deleteRequest)="confirmDelete($event)"
@@ -80,6 +81,7 @@
         <app-task-item
           [task]="task"
           [categoryName]="getCategoryName(task.categoryId ?? undefined)"
+          (tapRequest)="openDetail($event)"
           (toggleComplete)="onToggle($event)"
           (editRequest)="openForm($event)"
           (deleteRequest)="confirmDelete($event)"

@@ -1,0 +1,12 @@
+<button
+  type="button"
+  class="app-btn"
+  [class]="'app-btn--' + variant"
+  [class.app-btn--disabled]="disabled"
+  [disabled]="disabled"
+>
+  @if (icon) {
+    <ion-icon [name]="icon" />
+  }
+  <ng-content />
+</button>

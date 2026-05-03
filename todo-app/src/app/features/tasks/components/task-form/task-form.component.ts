@@ -9,6 +9,7 @@ import {
 import { Task } from '../../../../core/models/task.model';
 import { CategoryService } from '../../../categories/services/category.service';
 import { noWhitespaceValidator } from '../../../../shared/validators/no-whitespace.validator';
+import { AppButtonComponent } from '../../../../shared/components/app-button/app-button.component';
 
 @Component({
   selector: 'app-task-form',
@@ -19,6 +20,7 @@ import { noWhitespaceValidator } from '../../../../shared/validators/no-whitespa
     IonHeader, IonToolbar,
     IonContent, IonItem, IonInput, IonSelect, IonSelectOption,
     IonNote, IonTextarea,
+    AppButtonComponent,
   ],
   templateUrl: './task-form.component.html',
   styleUrl: './task-form.component.scss',

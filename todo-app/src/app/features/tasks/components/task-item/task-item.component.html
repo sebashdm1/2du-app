@@ -6,11 +6,11 @@
   </ion-item-options>
 
   <ion-item lines="none" class="task-item-host">
-    <div class="task-card">
+    <div class="task-card" (click)="tapRequest.emit(task)">
       <div
         class="check-circle"
         [class.checked]="task.completed"
-        (click)="toggleComplete.emit(task)"
+        (click)="$event.stopPropagation(); toggleComplete.emit(task)"
       >
         @if (task.completed) { <span class="check-mark">✓</span> }
       </div>

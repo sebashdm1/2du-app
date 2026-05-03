@@ -11,6 +11,7 @@ import { TaskService } from '../../services/task.service';
 import { CategoryService } from '../../../categories/services/category.service';
 import { TaskItemComponent } from '../../components/task-item/task-item.component';
 import { TaskFormComponent } from '../../components/task-form/task-form.component';
+import { TaskDetailComponent } from '../../components/task-detail/task-detail.component';
 import { Task } from '../../../../core/models/task.model';
 
 @Component({
@@ -73,6 +74,29 @@ export class TaskListPage implements OnInit {
 
   hasAdvancedFilters(): boolean { return this.taskService.selectedPriorities().length > 0; }
   openFilters(): void { this.router.navigate(['/filters']); }
+
+  async openDetail(task: Task): Promise<void> {
+    const modal = await this.modalCtrl.create({
+      component: TaskDetailComponent,
+      componentProps: {
+        task,
+        categoryName: this.getCategoryName(task.categoryId ?? undefined),
+      },
+      breakpoints: [0, 1],
+      initialBreakpoint: 1,
+      cssClass: 'detail-modal',
+    });
+    await modal.present();
+    const { data, role } = await modal.onWillDismiss<string>();
+    if (role !== 'action' || !data) return;
+    if (data === 'complete') {
+      await this.taskService.toggleComplete(task.id);
+    } else if (data === 'edit') {
+      await this.openForm(task);
+    } else if (data === 'delete') {
+      await this.confirmDelete(task);
+    }
+  }
 
   async openForm(task?: Task): Promise<void> {
     const modal = await this.modalCtrl.create({
