@@ -15,7 +15,7 @@ ion-toolbar {
 .add-cat-btn {
   margin: 16px 16px 8px;
   height: 48px;
-  border-radius: 14px;
+  border-radius: 10px;
   border: 2px dashed var(--app-pink);
   background: rgba(233,30,140,0.04);
   display: flex;
@@ -36,9 +36,20 @@ ion-toolbar {
 }
 
 .empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
   text-align: center;
-  padding: 48px 32px;
-  color: var(--app-muted);
+  padding: 0 32px;
+  gap: 6px;
 }
 
-.empty-sub { font-size: 13px; margin-top: 4px; }
+.empty-icon {
+  width: 200px;
+  height: 200px;
+  margin-bottom: 4px;
+}
+
+.empty-sub { font-size: 13px; color: var(--app-muted); }

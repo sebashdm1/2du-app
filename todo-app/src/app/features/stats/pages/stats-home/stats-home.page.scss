@@ -26,7 +26,7 @@ ion-toolbar {
 /* Progress card */
 .progress-card {
   background: linear-gradient(135deg, var(--app-purple-mid), var(--app-purple-light));
-  border-radius: 20px;
+  border-radius: 12px;
   padding: 24px 20px;
   display: flex;
   align-items: center;
@@ -140,25 +140,25 @@ ion-toolbar {
 
 .pri-card {
   flex: 1;
-  border-radius: 14px;
+  border-radius: 10px;
   padding: 14px 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 4px;
 
-  &.high   { background: rgba(239,68,68,0.1); }
-  &.medium { background: rgba(249,115,22,0.1); }
-  &.low    { background: rgba(34,197,94,0.1); }
+  &.high   { background: rgba(233,30,140,0.08); }
+  &.medium { background: rgba(42,21,88,0.08); }
+  &.low    { background: rgba(149,133,184,0.1); }
 }
 
 .pri-num {
   font-size: 24px;
   font-weight: 700;
 
-  .high &   { color: #EF4444; }
-  .medium & { color: #F97316; }
-  .low &    { color: #22C55E; }
+  .high &   { color: #E91E8C; }
+  .medium & { color: #2A1558; }
+  .low &    { color: #9585B8; }
 }
 
 .pri-lbl {
@@ -170,7 +170,7 @@ ion-toolbar {
 /* Category stats */
 .cat-stat-card {
   background: #fff;
-  border-radius: 14px;
+  border-radius: 10px;
   border: 1.5px solid var(--app-border);
   padding: 14px 16px;
   margin-bottom: 10px;
@@ -216,17 +216,30 @@ ion-toolbar {
 
 /* Empty state */
 .empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 40vh;
   text-align: center;
-  padding: 40px 20px;
+  padding: 0 32px;
+  gap: 6px;
 
   .empty-icon {
-    font-size: 48px;
-    margin-bottom: 12px;
+    width: 200px;
+    height: 200px;
+    margin-bottom: 4px;
   }
 
   p {
+    color: #000;
+    margin: 0;
+  }
+
+  .empty-sub {
+    font-size: 13px;
     color: var(--app-muted);
-    font-size: 14px;
+    margin: 0;
   }
 }
 

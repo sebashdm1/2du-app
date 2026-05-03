@@ -13,8 +13,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-card class="ion-margin">
-    <ion-card-content>
+  <div class="filter-card">
       <p class="section-label">Categorias</p>
       <div class="chips-wrap">
         @for (category of categoryService.categories(); track category.id) {
@@ -39,11 +38,10 @@
           <ion-label>🟢 Baja</ion-label>
         </ion-chip>
       </div>
-    </ion-card-content>
-  </ion-card>
+    </div>
 
   <div class="results-head ion-padding-horizontal ion-padding-top">
-    <ion-badge color="tertiary">{{ taskService.filteredTasks().length }} resultados</ion-badge>
+    <ion-badge color="primary">{{ taskService.filteredTasks().length }} resultados</ion-badge>
     <ion-note>{{ resultSummary() }}</ion-note>
   </div>
 

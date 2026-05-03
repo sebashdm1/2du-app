@@ -44,13 +44,14 @@
 .add-btn {
   width: 48px !important;
   height: 48px !important;
-  border-radius: 50% !important;
+  min-width: 48px !important;
+  padding: 0 !important;
+  border-radius: 10px !important;
   margin: 0 auto;
   background: var(--app-pink) !important;
   color: #fff !important;
   transform: translateY(-14px);
-  box-shadow: 0 4px 16px rgba(233, 30, 140, 0.4);
-  padding: 0 !important;
+  box-shadow: none;
 }
 
 .add-btn ion-icon {

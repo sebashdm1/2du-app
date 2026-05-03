@@ -9,7 +9,7 @@
   justify-content: center;
   gap: 8px;
   height: 52px;
-  border-radius: 26px;
+  border-radius: 6px;
   border: none;
   font-size: 15px;
   font-weight: 700;
@@ -23,13 +23,13 @@
   &--primary {
     background: var(--app-pink);
     color: #fff;
-    box-shadow: 0 6px 20px rgba(233, 30, 140, 0.35);
+    box-shadow: none;
   }
 
   &--secondary {
     background: #fff;
     color: var(--app-purple-dark);
-    border: 1.5px solid var(--app-border);
+    border: 1.5px solid #16092E;
     box-shadow: none;
   }
 
