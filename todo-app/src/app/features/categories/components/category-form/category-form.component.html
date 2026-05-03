@@ -1,0 +1,39 @@
+<div class="modal-header">
+  <div class="header-row">
+    <div class="back-btn" (click)="cancel()">←</div>
+    <span class="back-label">Categorías</span>
+  </div>
+  <h2 class="modal-title">{{ category ? 'Editar Categoría' : 'Nueva Categoría' }}</h2>
+</div>
+
+<ion-content class="form-content">
+  <div class="form-body">
+    <div class="form-group">
+      <div class="form-label">Nombre *</div>
+      <ion-item class="form-item">
+        <ion-input [formControl]="nameControl" placeholder="Ej: Trabajo" />
+      </ion-item>
+      @if (nameControl.invalid && nameControl.dirty) {
+        <ion-note color="danger" class="ion-padding-start">El nombre no puede estar vacío</ion-note>
+      }
+    </div>
+
+    <div class="form-group">
+      <div class="form-label">Color</div>
+      <div class="color-row">
+        @for (c of colors; track c.key) {
+          <div
+            class="color-dot"
+            [style.background]="c.bg"
+            [class.selected]="colorControl.value === c.key"
+            (click)="colorControl.setValue(c.key)"
+          ></div>
+        }
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<div class="save-btn" [class.disabled]="nameControl.invalid" (click)="save()">
+  Guardar categoría
+</div>

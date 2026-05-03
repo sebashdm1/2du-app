@@ -1,0 +1,41 @@
+<ion-item-sliding>
+  <ion-item-options side="start">
+    <ion-item-option color="danger" (click)="deleteRequest.emit(task)">
+      <ion-icon slot="icon-only" name="trash-outline" />
+    </ion-item-option>
+  </ion-item-options>
+
+  <ion-item lines="none" class="task-item-host">
+    <div class="task-card">
+      <div
+        class="check-circle"
+        [class.checked]="task.completed"
+        (click)="toggleComplete.emit(task)"
+      >
+        @if (task.completed) { <span class="check-mark">✓</span> }
+      </div>
+
+      <div class="task-body">
+        <p class="task-title" [class.done]="task.completed">{{ task.title }}</p>
+        <div class="task-meta">
+          @if (categoryName) {
+            <span class="cat-tag">{{ categoryName }}</span>
+          }
+          @if (task.dueDate) {
+            <span class="task-date">📅 {{ formatDate(task.dueDate) }}</span>
+          }
+        </div>
+      </div>
+
+      @if (task.priority) {
+        <div class="priority-dot" [class]="'pri-' + task.priority"></div>
+      }
+    </div>
+  </ion-item>
+
+  <ion-item-options side="end">
+    <ion-item-option color="primary" (click)="editRequest.emit(task)">
+      <ion-icon slot="icon-only" name="pencil-outline" />
+    </ion-item-option>
+  </ion-item-options>
+</ion-item-sliding>

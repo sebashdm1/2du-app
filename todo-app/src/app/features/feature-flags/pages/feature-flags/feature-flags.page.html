@@ -1,0 +1,43 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <div class="page-header">
+      <div class="header-row">
+        <ion-buttons>
+          <ion-back-button defaultHref="/settings" text="" color="light" />
+        </ion-buttons>
+        <span class="back-label">Ajustes</span>
+      </div>
+      <h2 class="header-title">Feature Flags</h2>
+      <p class="header-sub">Firebase Remote Config</p>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ff-content">
+  <div class="ff-body">
+    <div class="firebase-badge">
+      <div class="firebase-dot"></div>
+      Firebase Remote Config · {{ syncLabel() }}
+    </div>
+
+    @for (key of keys; track key) {
+      <div class="ff-card">
+        <div class="ff-card-header">
+          <div class="ff-card-info">
+            <div class="ff-card-title">{{ flagLabel(key) }}</div>
+            <div class="ff-card-sub">{{ key }}</div>
+          </div>
+          <div class="ff-card-status">
+            <span class="ff-badge" [class.badge-on]="isActive(key)" [class.badge-off]="!isActive(key)">
+              {{ isActive(key) ? 'ACTIVO' : 'INACTIVO' }}
+            </span>
+            <div class="toggle" [class.on]="isActive(key)"></div>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+
+  <div class="footer-spacer"></div>
+  <app-bottom-nav activeTab="settings" />
+</ion-content>

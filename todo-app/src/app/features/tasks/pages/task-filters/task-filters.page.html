@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="backToTasks()">
+        <ion-icon slot="icon-only" name="arrow-back-outline" />
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Filtrar Tareas</ion-title>
+    <ion-buttons slot="end">
+      <ion-button fill="clear" (click)="clearAll()">Limpiar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="ion-margin">
+    <ion-card-content>
+      <p class="section-label">Categorias</p>
+      <div class="chips-wrap">
+        @for (category of categoryService.categories(); track category.id) {
+          <ion-chip
+            [color]="isCategorySelected(category.id) ? 'primary' : 'medium'"
+            (click)="taskService.toggleCategoryFilter(category.id)"
+          >
+            <ion-label>{{ category.icon || '🏷️' }} {{ category.name }}</ion-label>
+          </ion-chip>
+        }
+      </div>
+
+      <p class="section-label">Prioridad</p>
+      <div class="chips-wrap">
+        <ion-chip [color]="isPrioritySelected('high') ? 'danger' : 'medium'" (click)="taskService.togglePriorityFilter('high')">
+          <ion-label>🔴 Alta</ion-label>
+        </ion-chip>
+        <ion-chip [color]="isPrioritySelected('medium') ? 'warning' : 'medium'" (click)="taskService.togglePriorityFilter('medium')">
+          <ion-label>🟠 Media</ion-label>
+        </ion-chip>
+        <ion-chip [color]="isPrioritySelected('low') ? 'success' : 'medium'" (click)="taskService.togglePriorityFilter('low')">
+          <ion-label>🟢 Baja</ion-label>
+        </ion-chip>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <div class="results-head ion-padding-horizontal ion-padding-top">
+    <ion-badge color="tertiary">{{ taskService.filteredTasks().length }} resultados</ion-badge>
+    <ion-note>{{ resultSummary() }}</ion-note>
+  </div>
+
+  <ion-list>
+    @for (task of taskService.filteredTasks(); track task.id) {
+      <ion-item>
+        <ion-label>
+          <h3>{{ task.title }}</h3>
+          <p>{{ categoryName(task.categoryId) }} · {{ priorityLabel(task.priority) }}</p>
+        </ion-label>
+        @if (task.dueDate) {
+          <ion-note slot="end">{{ shortDate(task.dueDate) }}</ion-note>
+        }
+      </ion-item>
+    }
+  </ion-list>
+
+  <div style="height:84px"></div>
+  <app-bottom-nav activeTab="tasks" />
+</ion-content>

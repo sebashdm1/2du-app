@@ -1,0 +1,95 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <div class="greeting-row">
+      <div class="avatar">SH</div>
+      <div class="greeting-text">
+        <span class="hello">Buenos días,</span>
+        <span class="name">Sebastián ✦</span>
+      </div>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [scrollY]="true">
+  <div class="progress-card">
+    <div class="pc-label">Progreso de hoy</div>
+    <div class="pc-count">
+      {{ completedCount() }}
+      <span class="pc-total">de {{ allTasks() }}</span>
+    </div>
+    <div class="pc-sub">tareas completadas · {{ progressPercent() }}%</div>
+    <div class="progress-bar">
+      <div class="progress-fill" [style.width.%]="progressPercent()"></div>
+    </div>
+  </div>
+
+  @if (categoryService.categories().length > 0) {
+    <div class="cat-chips">
+      <div
+        class="chip"
+        [class.active]="taskService.selectedCategoryIds().length === 0"
+        (click)="selectAllCategories()"
+      >
+        <span class="chip-dot" [style.background]="taskService.selectedCategoryIds().length === 0 ? '#fff' : '#9585B8'"></span>
+        Todas
+      </div>
+      @for (cat of categoryService.categories(); track cat.id) {
+        <div
+          class="chip"
+          [class.active]="isCategorySelected(cat.id)"
+          (click)="selectCategory(cat.id)"
+        >
+          <span class="chip-dot" style="background: #E91E8C"></span>
+          {{ cat.name }}
+        </div>
+      }
+    </div>
+  }
+
+  @if (allTasks() > 0) {
+    <div class="section-header">
+      <h3>Pendientes</h3>
+      <a>{{ pendingTasks().length }}</a>
+    </div>
+    @if (pendingTasks().length > 0) {
+      @for (task of pendingTasks(); track task.id) {
+        <app-task-item
+          [task]="task"
+          [categoryName]="getCategoryName(task.categoryId ?? undefined)"
+          (toggleComplete)="onToggle($event)"
+          (editRequest)="openForm($event)"
+          (deleteRequest)="confirmDelete($event)"
+        />
+      }
+    } @else {
+      <p class="empty-msg">No hay tareas pendientes en este filtro.</p>
+    }
+
+    <div class="section-header">
+      <h3>Completadas</h3>
+      <a>{{ completedTasks().length }}</a>
+    </div>
+    @if (completedTasks().length > 0) {
+      @for (task of completedTasks(); track task.id) {
+        <app-task-item
+          [task]="task"
+          [categoryName]="getCategoryName(task.categoryId ?? undefined)"
+          (toggleComplete)="onToggle($event)"
+          (editRequest)="openForm($event)"
+          (deleteRequest)="confirmDelete($event)"
+        />
+      }
+    } @else {
+      <p class="empty-msg">Aún no hay tareas completadas.</p>
+    }
+  } @else {
+    <div class="empty-state">
+      <ion-icon name="sparkles-outline" class="empty-icon" />
+      <p>Sin tareas por hacer</p>
+      <p class="empty-sub">Toca + para crear una</p>
+    </div>
+  }
+
+  <div class="footer-spacer"></div>
+  <app-bottom-nav activeTab="tasks" />
+</ion-content>

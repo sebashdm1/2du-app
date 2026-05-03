@@ -1,0 +1,17 @@
+<div class="cat-item">
+  <div class="cat-icon" [style.background]="iconBg()">
+    <span>{{ category.icon || '🏷️' }}</span>
+  </div>
+  <div class="cat-info">
+    <div class="cat-name">{{ category.name }}</div>
+    <div class="cat-count">{{ pendingCount }} {{ pendingCount === 1 ? 'tarea pendiente' : 'tareas pendientes' }}</div>
+  </div>
+  <div class="cat-actions">
+    <button class="icon-btn" (click)="editRequest.emit(category)" aria-label="Editar">
+      <ion-icon name="pencil-outline" />
+    </button>
+    <button class="icon-btn delete" (click)="deleteRequest.emit(category)" aria-label="Eliminar">
+      <ion-icon name="trash-outline" />
+    </button>
+  </div>
+</div>

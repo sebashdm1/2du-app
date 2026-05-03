@@ -1,0 +1,37 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <div class="page-header">
+      <h2 class="header-title">Categorías</h2>
+      <div class="header-sub">{{ categoryService.categories().length }} categorías activas</div>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="content-area">
+    <div class="add-cat-btn" (click)="openForm()">
+      <span>+</span> Nueva categoría
+    </div>
+
+    @if (categoryService.categories().length > 0) {
+      <div class="cat-list">
+        @for (cat of categoryService.categories(); track cat.id) {
+          <app-category-item
+            [category]="cat"
+            [pendingCount]="pendingByCategory(cat.id)"
+            (editRequest)="openForm($event)"
+            (deleteRequest)="confirmDelete($event)"
+          />
+        }
+      </div>
+    } @else {
+      <div class="empty-state">
+        <p>Sin categorías creadas</p>
+        <p class="empty-sub">Toca el botón de arriba para crear una</p>
+      </div>
+    }
+  </div>
+
+  <div class="footer-spacer"></div>
+  <app-bottom-nav activeTab="categories" />
+</ion-content>

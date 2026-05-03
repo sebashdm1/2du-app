@@ -1,0 +1,17 @@
+.section-label {
+  margin: 0 0 8px;
+  font-weight: 600;
+}
+
+.chips-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.results-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

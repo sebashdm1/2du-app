@@ -1,0 +1,25 @@
+<nav class="bottom-nav" aria-label="Navegacion principal">
+  <button type="button" [class.active]="activeTab === 'tasks'" (click)="goTo('/tasks')">
+    <ion-icon name="checkmark-circle-outline" />
+    <span>Tareas</span>
+  </button>
+
+  <button type="button" [class.active]="activeTab === 'categories'" (click)="goTo('/categories')">
+    <ion-icon name="pricetag-outline" />
+    <span>Categorías</span>
+  </button>
+
+  <button type="button" class="add-btn" (click)="createTask()" aria-label="Nueva tarea">
+    <ion-icon name="add-outline" />
+  </button>
+
+  <button type="button" [class.active]="activeTab === 'stats'" (click)="goTo('/stats')">
+    <ion-icon name="bar-chart-outline" />
+    <span>Stats</span>
+  </button>
+
+  <button type="button" [class.active]="activeTab === 'settings'" (click)="goTo('/settings')">
+    <ion-icon name="settings-outline" />
+    <span>Ajustes</span>
+  </button>
+</nav>

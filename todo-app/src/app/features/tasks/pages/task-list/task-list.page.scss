@@ -1,0 +1,135 @@
+ion-toolbar {
+  --background: #16092E;
+  --padding-bottom: 16px;
+}
+
+.greeting-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 20px 0;
+}
+
+.avatar {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: #E91E8C;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 14px; color: #fff;
+  flex-shrink: 0;
+}
+
+.greeting-text {
+  display: flex; flex-direction: column;
+}
+
+.hello { font-size: 12px; color: #9585B8; }
+.name  { font-size: 15px; font-weight: 700; color: #fff; }
+
+.progress-card {
+  margin: 16px 16px 0;
+  background: linear-gradient(135deg, #2A1558, #3D2080);
+  border-radius: 16px;
+  padding: 16px;
+  color: #fff;
+}
+
+.pc-label { font-size: 12px; color: rgba(255,255,255,0.6); margin-bottom: 4px; }
+.pc-count { font-size: 28px; font-weight: 800; }
+.pc-total { font-size: 16px; font-weight: 400; opacity: .6; }
+.pc-sub   { font-size: 12px; color: rgba(255,255,255,0.6); margin-top: 2px; }
+
+.progress-bar {
+  height: 6px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 3px;
+  margin-top: 12px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: #E91E8C;
+  border-radius: 3px;
+  transition: width 0.4s ease;
+}
+
+.cat-chips {
+  display: flex;
+  gap: 8px;
+  padding: 16px 16px 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.cat-chips::-webkit-scrollbar { display: none; }
+
+.chip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  flex-shrink: 0;
+  border: 1.5px solid #EAE0F7;
+  color: #9585B8;
+  background: #fff;
+}
+
+.chip.active {
+  background: #16092E;
+  color: #fff;
+  border-color: #16092E;
+}
+
+.chip-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 16px 8px;
+}
+
+.section-header h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: #16092E;
+}
+
+.section-header a {
+  font-size: 12px;
+  color: #E91E8C;
+  font-weight: 600;
+}
+
+.empty-msg {
+  padding: 4px 16px 8px;
+  font-size: 13px;
+  color: #9585B8;
+  margin: 0;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 48px 32px;
+}
+
+.empty-icon {
+  font-size: 48px;
+  opacity: 0.35;
+  color: #9585B8;
+}
+
+.empty-sub { color: #9585B8; font-size: 13px; }
+
+.footer-spacer { height: 84px; }
