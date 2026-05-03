@@ -30,8 +30,6 @@ export class FeatureFlagsPage {
   flagLabel(key: FeatureFlagKey): string {
     const labels: Record<FeatureFlagKey, string> = {
       nueva_ui_estadisticas: '📊 Dashboard de Estadísticas',
-      ai_smart_reminders:    '🔔 Recordatorios inteligentes',
-      custom_themes_v2:      '🎨 Temas personalizados',
     };
     return labels[key] ?? key;
   }

@@ -6,6 +6,12 @@
         <span class="hello">Buenos días,</span>
         <span class="name">Sebastián</span>
       </div>
+      <button type="button" class="filter-btn" [class.filter-btn--active]="hasAdvancedFilters()" (click)="openFilters()" aria-label="Filtros avanzados">
+        <ion-icon name="funnel-outline" />
+        @if (hasAdvancedFilters()) {
+          <span class="filter-badge">{{ taskService.selectedPriorities().length }}</span>
+        }
+      </button>
     </div>
   </ion-toolbar>
 </ion-header>

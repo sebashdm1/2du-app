@@ -6,7 +6,7 @@ import {
   AlertController, ModalController,
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import { sparklesOutline } from 'ionicons/icons';
+import { sparklesOutline, funnelOutline } from 'ionicons/icons';
 import { TaskService } from '../../services/task.service';
 import { CategoryService } from '../../../categories/services/category.service';
 import { TaskItemComponent } from '../../components/task-item/task-item.component';
@@ -36,7 +36,7 @@ export class TaskListPage implements OnInit {
   private readonly destroyRef = inject(DestroyRef);
 
   constructor() {
-    addIcons({ sparklesOutline });
+    addIcons({ sparklesOutline, funnelOutline });
   }
 
   async ngOnInit(): Promise<void> {
@@ -71,6 +71,9 @@ export class TaskListPage implements OnInit {
   isCategorySelected(id: string): boolean { return this.taskService.selectedCategoryIds().includes(id); }
   selectAllCategories(): void { this.taskService.setHomeCategoryFilter(null); }
   selectCategory(id: string): void { this.taskService.setHomeCategoryFilter(id); }
+
+  hasAdvancedFilters(): boolean { return this.taskService.selectedPriorities().length > 0; }
+  openFilters(): void { this.router.navigate(['/filters']); }
 
   async openForm(task?: Task): Promise<void> {
     const modal = await this.modalCtrl.create({

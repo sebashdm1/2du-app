@@ -1,15 +1,10 @@
 import { Injectable, Signal, signal, computed } from '@angular/core';
 import { RemoteConfig, fetchAndActivate, getValue } from '@angular/fire/remote-config';
 
-export type FeatureFlagKey =
-  | 'nueva_ui_estadisticas'
-  | 'ai_smart_reminders'
-  | 'custom_themes_v2';
+export type FeatureFlagKey = 'nueva_ui_estadisticas';
 
 const DEFAULTS: Record<FeatureFlagKey, boolean> = {
   nueva_ui_estadisticas: true,
-  ai_smart_reminders: false,
-  custom_themes_v2: false,
 };
 
 @Injectable({ providedIn: 'root' })
@@ -23,15 +18,13 @@ export class RemoteConfigService {
 
   async initialize(): Promise<void> {
     try {
-      this.rc.settings.minimumFetchIntervalMillis = 3_600_000;
+      this.rc.settings.minimumFetchIntervalMillis = 0;
       await Promise.race([
         fetchAndActivate(this.rc),
         new Promise<void>((resolve) => setTimeout(resolve, 3000)),
       ]);
       this.flags.set({
         nueva_ui_estadisticas: getValue(this.rc, 'nueva_ui_estadisticas').asBoolean(),
-        ai_smart_reminders: getValue(this.rc, 'ai_smart_reminders').asBoolean(),
-        custom_themes_v2: getValue(this.rc, 'custom_themes_v2').asBoolean(),
       });
       this.syncStatus.set('success');
     } catch {

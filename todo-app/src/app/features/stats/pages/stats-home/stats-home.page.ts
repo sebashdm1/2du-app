@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit, computed, inject } from '@a
 import { IonHeader, IonToolbar, IonContent } from '@ionic/angular/standalone';
 import { TaskService } from '../../../tasks/services/task.service';
 import { CategoryService } from '../../../categories/services/category.service';
+import { RemoteConfigService } from '../../../../core/services/remote-config.service';
 import { BottomNavComponent } from '../../../../shared/components/bottom-nav/bottom-nav.component';
 
 @Component({
@@ -15,6 +16,9 @@ import { BottomNavComponent } from '../../../../shared/components/bottom-nav/bot
 export class StatsHomePage implements OnInit {
   private readonly taskService = inject(TaskService);
   private readonly categoryService = inject(CategoryService);
+  protected readonly remoteConfig = inject(RemoteConfigService);
+
+  readonly statsEnabled = this.remoteConfig.flag('nueva_ui_estadisticas');
 
   readonly total = computed(() => this.taskService.tasks().length);
   readonly completed = computed(() => this.taskService.tasks().filter(t => t.completed).length);
