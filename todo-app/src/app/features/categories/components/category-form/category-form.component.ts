@@ -1,13 +1,10 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit, inject } from '@angular/core';
-import { ReactiveFormsModule, FormControl, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
+import { ReactiveFormsModule, FormControl, Validators } from '@angular/forms';
 import {
   IonContent, IonItem, IonInput, IonNote, ModalController,
 } from '@ionic/angular/standalone';
 import { Category } from '../../../../core/models/category.model';
-
-function noWhitespaceValidator(control: AbstractControl): ValidationErrors | null {
-  return (control.value ?? '').trim().length === 0 ? { whitespace: true } : null;
-}
+import { noWhitespaceValidator } from '../../../../shared/validators/no-whitespace.validator';
 
 @Component({
   selector: 'app-category-form',

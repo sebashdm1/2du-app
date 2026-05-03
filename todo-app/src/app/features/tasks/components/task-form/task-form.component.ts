@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit, inject } from '@angular/core';
-import { ReactiveFormsModule, FormControl, FormGroup, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
+import { ReactiveFormsModule, FormControl, FormGroup, Validators } from '@angular/forms';
 import {
   IonHeader, IonToolbar,
   IonContent, IonItem, IonInput, IonSelect, IonSelectOption,
@@ -8,10 +8,7 @@ import {
 } from '@ionic/angular/standalone';
 import { Task } from '../../../../core/models/task.model';
 import { CategoryService } from '../../../categories/services/category.service';
-
-function noWhitespaceValidator(control: AbstractControl): ValidationErrors | null {
-  return (control.value ?? '').trim().length === 0 ? { whitespace: true } : null;
-}
+import { noWhitespaceValidator } from '../../../../shared/validators/no-whitespace.validator';
 
 @Component({
   selector: 'app-task-form',

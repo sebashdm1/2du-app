@@ -1,14 +1,14 @@
 ion-toolbar {
-  --background: #16092E;
+  --background: var(--app-purple-dark);
   --padding-bottom: 20px;
 }
 
 .page-header { padding: 12px 20px 0; }
 .header-title { margin: 0; font-size: 26px; font-weight: 800; color: #fff; letter-spacing: -0.5px; }
-.header-sub { font-size: 13px; color: #9585B8; margin-top: 2px; }
+.header-sub { font-size: 13px; color: var(--app-muted); margin-top: 2px; }
 
 .content-area {
-  background: #F8F5FF;
+  background: var(--app-surface);
   min-height: 100%;
 }
 
@@ -16,7 +16,7 @@ ion-toolbar {
   margin: 16px 16px 8px;
   height: 48px;
   border-radius: 14px;
-  border: 2px dashed #E91E8C;
+  border: 2px dashed var(--app-pink);
   background: rgba(233,30,140,0.04);
   display: flex;
   align-items: center;
@@ -24,7 +24,7 @@ ion-toolbar {
   gap: 8px;
   font-size: 14px;
   font-weight: 700;
-  color: #E91E8C;
+  color: var(--app-pink);
   cursor: pointer;
 }
 
@@ -38,9 +38,7 @@ ion-toolbar {
 .empty-state {
   text-align: center;
   padding: 48px 32px;
-  color: #9585B8;
+  color: var(--app-muted);
 }
 
 .empty-sub { font-size: 13px; margin-top: 4px; }
-
-.footer-spacer { height: 84px; }

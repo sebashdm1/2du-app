@@ -30,7 +30,7 @@
         [class.active]="taskService.selectedCategoryIds().length === 0"
         (click)="selectAllCategories()"
       >
-        <span class="chip-dot" [style.background]="taskService.selectedCategoryIds().length === 0 ? '#fff' : '#9585B8'"></span>
+        <span class="chip-dot" [style.background]="taskService.selectedCategoryIds().length === 0 ? '#fff' : 'var(--app-muted)'"></span>
         Todas
       </div>
       @for (cat of categoryService.categories(); track cat.id) {
@@ -39,7 +39,7 @@
           [class.active]="isCategorySelected(cat.id)"
           (click)="selectCategory(cat.id)"
         >
-          <span class="chip-dot" style="background: #E91E8C"></span>
+          <span class="chip-dot" style="background: var(--app-pink)"></span>
           {{ cat.name }}
         </div>
       }
@@ -90,6 +90,5 @@
     </div>
   }
 
-  <div class="footer-spacer"></div>
   <app-bottom-nav activeTab="tasks" />
 </ion-content>

@@ -1,4 +1,4 @@
-ion-toolbar { --background: #16092E; --padding-bottom: 20px; }
+ion-toolbar { --background: var(--app-purple-dark); --padding-bottom: 20px; }
 
 .page-header { padding: 8px 16px 0; }
 .header-row { display: flex; align-items: center; gap: 4px; margin-bottom: 12px; }
@@ -6,7 +6,7 @@ ion-toolbar { --background: #16092E; --padding-bottom: 20px; }
 .header-title { margin: 0; font-size: 20px; font-weight: 800; color: #fff; }
 .header-sub { margin: 4px 0 0; font-size: 12px; color: rgba(255,255,255,0.5); }
 
-.ff-content { --background: #F8F5FF; }
+.ff-content { --background: var(--app-surface); }
 
 .ff-body {
   padding: 16px;
@@ -44,7 +44,7 @@ ion-toolbar { --background: #16092E; --padding-bottom: 20px; }
 .ff-card {
   background: #fff;
   border-radius: 16px;
-  border: 1.5px solid #EAE0F7;
+  border: 1.5px solid var(--app-border);
   overflow: hidden;
 }
 
@@ -55,8 +55,8 @@ ion-toolbar { --background: #16092E; --padding-bottom: 20px; }
   padding: 16px;
 }
 
-.ff-card-title { font-size: 14px; font-weight: 700; color: #16092E; }
-.ff-card-sub { font-size: 11px; color: #9585B8; margin-top: 2px; font-family: monospace; }
+.ff-card-title { font-size: 14px; font-weight: 700; color: var(--app-purple-dark); }
+.ff-card-sub { font-size: 11px; color: var(--app-muted); margin-top: 2px; font-family: monospace; }
 
 .ff-card-status {
   display: flex;
@@ -78,11 +78,11 @@ ion-toolbar { --background: #16092E; --padding-bottom: 20px; }
 .toggle {
   width: 44px; height: 24px;
   border-radius: 12px;
-  background: #EAE0F7;
+  background: var(--app-border);
   position: relative;
 }
 
-.toggle.on { background: #E91E8C; }
+.toggle.on { background: var(--app-pink); }
 
 .toggle::after {
   content: '';
@@ -96,5 +96,3 @@ ion-toolbar { --background: #16092E; --padding-bottom: 20px; }
 }
 
 .toggle.on::after { transform: translateX(20px); }
-
-.footer-spacer { height: 84px; }
