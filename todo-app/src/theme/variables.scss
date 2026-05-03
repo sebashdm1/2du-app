@@ -1,2 +1,48 @@
 // For information on how to create your own theme, please refer to:
 // https://ionicframework.com/docs/theming/
+
+:root {
+  --purple-deep:  #0F0820;
+  --purple-dark:  #16092E;
+  --purple-mid:   #2A1558;
+  --purple-light: #3D2080;
+  --pink:         #E91E8C;
+  --pink-dark:    #C4166E;
+  --pink-light:   #FF5CB8;
+  --surface:      #F8F5FF;
+  --surface-2:    #EDE8F8;
+  --border:       #EAE0F7;
+  --muted:        #9585B8;
+  --fg:           #16092E;
+
+  --ion-color-primary:              #E91E8C;
+  --ion-color-primary-rgb:          233, 30, 140;
+  --ion-color-primary-contrast:     #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade:        #C4166E;
+  --ion-color-primary-tint:         #FF5CB8;
+
+  --ion-background-color:       #F8F5FF;
+  --ion-background-color-rgb:   248, 245, 255;
+  --ion-text-color:             #16092E;
+  --ion-text-color-rgb:         22, 9, 46;
+
+  --ion-toolbar-background:     #16092E;
+  --ion-toolbar-color:          #ffffff;
+  --ion-toolbar-border-color:   transparent;
+
+  --ion-tab-bar-background:     #ffffff;
+  --ion-tab-bar-border-color:   #EAE0F7;
+  --ion-tab-bar-color:          #9585B8;
+  --ion-tab-bar-color-selected: #16092E;
+
+  --ion-item-background:        #ffffff;
+  --ion-item-border-color:      #EAE0F7;
+  --ion-card-background:        #ffffff;
+  --ion-border-color:           #EAE0F7;
+
+  --ion-color-medium:           #9585B8;
+  --ion-color-medium-rgb:       149, 133, 184;
+  --ion-color-medium-shade:     #7a6da3;
+  --ion-color-medium-tint:      #a694c0;
+}

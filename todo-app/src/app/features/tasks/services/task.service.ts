@@ -3,15 +3,29 @@ import { StorageService } from '../../../core/services/storage.service';
 import { Task } from '../../../core/models/task.model';
 import { generateUUID } from '../../../core/utils/uuid';
 
+type TaskPriority = NonNullable<Task['priority']>;
+
 @Injectable({ providedIn: 'root' })
 export class TaskService {
   readonly tasks = signal<Task[]>([]);
-  readonly filterCategoryId = signal<string | null>(null);
+  readonly selectedCategoryIds = signal<string[]>([]);
+  readonly selectedPriorities = signal<TaskPriority[]>([]);
 
   readonly filteredTasks = computed(() => {
-    const filter = this.filterCategoryId();
-    if (filter === null) return this.tasks();
-    return this.tasks().filter(t => t.categoryId === filter);
+    const selectedCategories = this.selectedCategoryIds();
+    const selectedPriorities = this.selectedPriorities();
+
+    return this.tasks().filter((task) => {
+      const matchesCategory =
+        selectedCategories.length === 0 ||
+        (task.categoryId !== null && selectedCategories.includes(task.categoryId));
+
+      const matchesPriority =
+        selectedPriorities.length === 0 ||
+        (task.priority !== undefined && selectedPriorities.includes(task.priority));
+
+      return matchesCategory && matchesPriority;
+    });
   });
 
   constructor(private storage: StorageService) {}
@@ -73,5 +87,35 @@ export class TaskService {
     );
     await this.storage.saveAllTasks(updated);
     this.tasks.set(updated);
+    this.selectedCategoryIds.update((ids) => ids.filter((id) => id !== categoryId));
+  }
+
+  setHomeCategoryFilter(categoryId: string | null): void {
+    if (categoryId === null) {
+      this.selectedCategoryIds.set([]);
+      return;
+    }
+    this.selectedCategoryIds.set([categoryId]);
+  }
+
+  toggleCategoryFilter(categoryId: string): void {
+    this.selectedCategoryIds.update((ids) =>
+      ids.includes(categoryId)
+        ? ids.filter((id) => id !== categoryId)
+        : [...ids, categoryId]
+    );
+  }
+
+  togglePriorityFilter(priority: TaskPriority): void {
+    this.selectedPriorities.update((priorities) =>
+      priorities.includes(priority)
+        ? priorities.filter((value) => value !== priority)
+        : [...priorities, priority]
+    );
+  }
+
+  clearAllFilters(): void {
+    this.selectedCategoryIds.set([]);
+    this.selectedPriorities.set([]);
   }
 }

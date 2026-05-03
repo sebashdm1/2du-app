@@ -28,6 +28,27 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'filters',
+    loadComponent: () =>
+      import('./features/tasks/pages/task-filters/task-filters.page').then(
+        (m) => m.TaskFiltersPage,
+      ),
+  },
+  {
+    path: 'stats',
+    loadComponent: () =>
+      import('./features/stats/pages/stats-home/stats-home.page').then(
+        (m) => m.StatsHomePage,
+      ),
+  },
+  {
+    path: 'settings',
+    loadComponent: () =>
+      import('./features/settings/pages/settings-home/settings-home.page').then(
+        (m) => m.SettingsHomePage,
+      ),
+  },
+  {
     path: '**',
     redirectTo: 'tasks',
   },
