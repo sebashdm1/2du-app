@@ -81,15 +81,14 @@ export class TaskListPage implements OnInit {
     });
     await modal.present();
     const { data, role } = await modal.onWillDismiss<{
-      title: string; categoryId?: string; dueDate?: string;
-      priority?: 'high' | 'medium' | 'low'; description?: string; reminderLabel?: string;
+      title: string; categoryId?: string;
+      priority?: 'high' | 'medium' | 'low'; description?: string;
     }>();
     if (role !== 'confirm' || !data) return;
     if (task) {
       await this.taskService.updateTask(task.id, {
         title: data.title, categoryId: data.categoryId ?? null,
-        dueDate: data.dueDate, priority: data.priority,
-        description: data.description, reminderLabel: data.reminderLabel,
+        priority: data.priority, description: data.description,
       });
     } else {
       await this.taskService.addTask(data);
