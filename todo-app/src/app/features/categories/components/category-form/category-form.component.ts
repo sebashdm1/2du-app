@@ -5,12 +5,13 @@ import {
 } from '@ionic/angular/standalone';
 import { Category } from '../../../../core/models/category.model';
 import { noWhitespaceValidator } from '../../../../shared/validators/no-whitespace.validator';
+import { AppButtonComponent } from '../../../../shared/components/app-button/app-button.component';
 
 @Component({
   selector: 'app-category-form',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [ReactiveFormsModule, IonContent, IonItem, IonInput, IonNote],
+  imports: [ReactiveFormsModule, IonContent, IonItem, IonInput, IonNote, AppButtonComponent],
   templateUrl: './category-form.component.html',
   styleUrl: './category-form.component.scss',
 })

@@ -1,0 +1,24 @@
+<svg width="2732" height="2732" viewBox="0 0 2732 2732" xmlns="http://www.w3.org/2000/svg">
+
+  <!-- Fondo -->
+  <rect width="2732" height="2732" fill="#000000"/>
+
+  <!-- Grupo centrado -->
+  <g transform="translate(0, -140)">
+
+    <!-- Texto principal -->
+    <text x="1366" y="1450"
+          text-anchor="middle"
+          fill="#FFFFFF"
+          font-size="520"
+          font-family="Arial, Helvetica, sans-serif"
+          font-weight="700">
+      2Du
+    </text>
+
+    <!-- Cuadrado fucsia (detalle sobre el 2) -->
+    <rect x="1034" y="1060" width="86" height="86" fill="#FF0080"/>
+
+  </g>
+
+</svg>

@@ -34,6 +34,6 @@
   </div>
 </ion-content>
 
-<div class="save-btn" [class.disabled]="nameControl.invalid" (click)="save()">
-  Guardar categoría
+<div class="form-footer">
+  <app-button variant="primary" [disabled]="nameControl.invalid" (click)="save()">Crear categoría</app-button>
 </div>
