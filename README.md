@@ -2,9 +2,9 @@
 
 Aplicación móvil híbrida (Android + iOS) de gestión de tareas personales con CRUD de categorías, almacenamiento local persistente y feature flags vía Firebase Remote Config.
 
-> **Stack:** Ionic 7.8.6 · Angular 17.3.12 · Cordova 12 · Firebase 10.13.2 · `@angular/fire` 17.1.0
+> **Stack:** Ionic 8 · Angular 20 · Cordova · Firebase · `@angular/fire`
 > **Node requerido:** 20.19+ LTS 
-> **JDK requerido (Android):** 17 
+> **JDK requerido (Android):** 17+
 
 ---
 
@@ -36,26 +36,25 @@ npm --version
 ### 1.2 CLIs globales
 
 ```powershell
-npm install -g @ionic/cli@7.2.0 cordova@12.0.0 @angular/cli@17
+npm install -g @ionic/cli cordova cordova-res
 ```
 
 Verificar:
 
 ```powershell
-ionic --version    # 7.2.0+
-cordova --version  # 12.0.0
-ng version         # 17.x
+ionic --version
+cordova --version
+ng version
 ```
 
 ### 1.3 Para builds Android
 
 | Componente | Versión |
 |---|---|
-| **JDK** | **17 exactamente** (Adoptium Temurin recomendado) |
-| Android Studio | Hedgehog 2023.1.1+ |
-| Android SDK Platform | **34** |
-| Android SDK Build-Tools | 34.0.0 |
-| Gradle | 8.7 (lo gestiona cordova-android) |
+| **JDK** | 17+ (incluido en Android Studio) |
+| Android Studio | Latest |
+| Android SDK Command-line Tools | Latest (instalar desde SDK Manager) |
+| Gradle | 9.5.0 |
 
 ```powershell
 # Verificar JDK 17
@@ -139,7 +138,32 @@ Debe reportar `Installed` para Java JDK, Android SDK y Gradle.
 ---
 
 
-## 4. Ejecutar en navegador (`ionic serve`)
+## 4. Generar APK Android
+
+```powershell
+cd todo-app
+
+# Genera los recursos del splash screen
+cordova-res android --skip-config --copy
+
+# Build de Angular
+npx ng build --configuration=production
+
+# Agrega plataforma Android (solo la primera vez)
+npx cordova platform add android
+
+# Genera el APK
+npx cordova build android
+```
+
+El APK queda en:
+```
+todo-app/platforms/android/app/build/outputs/apk/debug/app-debug.apk
+```
+
+---
+
+## 5. Ejecutar en navegador (`ionic serve`)
 
 Modo desarrollo con hot-reload. El driver SQLite no carga en browser — cae automáticamente a IndexedDB (esto es esperado, ver [docs/architecture/decisions/ADR-002-storage-strategy.md](docs/architecture/decisions/ADR-002-storage-strategy.md)).
 
