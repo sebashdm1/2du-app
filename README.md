@@ -8,6 +8,12 @@ Aplicación móvil híbrida (Android + iOS) de gestión de tareas personales con
 
 ---
 
+## Video Demo
+
+
+https://github.com/user-attachments/assets/11c45101-baff-4f62-840b-f2f31d8891c6
+
+
 ## Tabla de contenidos
 
 1. [Prerrequisitos](#1-prerrequisitos)
